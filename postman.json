@@ -1,0 +1,77 @@
+{
+    "info": {
+        "name": "Seat Booking System API",
+        "_postman_id": "8c1e7f42-4a4d-4b5b-9f3a-abcdef123456",
+        "description": "Admin seat creation and user seat booking APIs",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [{
+            "name": "Admin - Create Seats",
+            "request": {
+                "method": "POST",
+                "header": [{
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"totalSeats\": 100\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/api/admin/seats/create-seats",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["api", "admin", "seats", "create-seats"]
+                }
+            }
+        },
+        {
+            "name": "User - Get Available Seats",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:5000/api/seats/available",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["api", "seats", "available"]
+                }
+            }
+        },
+        {
+            "name": "User - Book Seat",
+            "request": {
+                "method": "POST",
+                "header": [{
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"seatNumber\": 12,\n  \"userId\": \"user_123\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/api/seats/book",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["api", "seats", "book"]
+                }
+            }
+        },
+        {
+            "name": "User - Cancel Seat Booking",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:5000/api/seats/cancel/12",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["api", "seats", "cancel", "12"]
+                }
+            }
+        }
+    ]
+}
