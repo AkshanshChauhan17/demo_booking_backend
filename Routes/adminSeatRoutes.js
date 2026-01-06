@@ -3,11 +3,9 @@ const router = express.Router();
 const Seat = require("../models/seat");
 const { v4: uuidv4 } = require("uuid");
 
-
-// ✅ ADMIN: CREATE SEATS (example: 100)
 router.post("/create-seats", async(req, res) => {
     try {
-        const { totalSeats } = req.body; // 100
+        const { totalSeats } = req.body;
 
         const seats = [];
 

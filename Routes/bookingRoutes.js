@@ -3,8 +3,6 @@ const router = express.Router();
 const Seat = require("../models/seat");
 const { v4: uuidv4 } = require("uuid");
 
-
-// ✅ GET ALL SEATS
 router.get("/available", async(req, res) => {
     try {
         const seats = await Seat.find({});
@@ -14,8 +12,6 @@ router.get("/available", async(req, res) => {
     }
 });
 
-
-// ✅ USER BOOK A SEAT (REAL-TIME)
 router.post("/book", async(req, res) => {
     try {
         const { seatNumber, userId } = req.body;
@@ -34,7 +30,6 @@ router.post("/book", async(req, res) => {
 
         await seat.save();
 
-        // 🔥 Emit update to all clients
         const io = req.app.get("io");
         const seats = await Seat.find({});
         io.emit("seatsUpdated", seats);
@@ -49,8 +44,6 @@ router.post("/book", async(req, res) => {
     }
 });
 
-
-// ❌ CANCEL SEAT (REAL-TIME)
 router.delete("/cancel/:seatNumber", async(req, res) => {
     try {
         const seat = await Seat.findOne({ seatNumber: req.params.seatNumber });
@@ -64,7 +57,6 @@ router.delete("/cancel/:seatNumber", async(req, res) => {
 
         await seat.save();
 
-        // 🔥 Emit update
         const io = req.app.get("io");
         const seats = await Seat.find({});
         io.emit("seatsUpdated", seats);
