@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Seat = require("../models/s.eat");
+const Seat = require("../models/seat");
 const { v4: uuidv4 } = require("uuid");
 
 
